@@ -18,6 +18,17 @@ App({
             success: function (res) {
               that.globalData.userInfo = res.userInfo
               typeof cb == "function" && cb(that.globalData.userInfo)
+            },
+            fail: function(res){
+              console.log("get user info fail" + res.errMsg)
+              if (res.errMsg == 'getUserInfo:fail scope unauthorized'
+               || res.errMsg == 'getUserInfo:fail auth deny' 
+               || res.errMsg == 'getUserInfo:fail:scope unauthorized' 
+               || res.errMsg == 'getUserInfo:fail:auth deny') {
+                wx.navigateTo({
+                  url: '/pages/auth/auth'
+                })
+               }
             }
           })
         }

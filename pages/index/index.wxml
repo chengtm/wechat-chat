@@ -1,6 +1,7 @@
 <view>
   <view class="sendmessage">
-    <input id="message" bindinput="bindChange"></input>
+    <input id="message" bindinput="bindChange" 
+    value='{{message}}' focus="{{message_focus}}"></input>
     <button bindtap="add">发送</button>
   </view>
 </view> 

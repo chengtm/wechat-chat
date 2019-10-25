@@ -1,9 +1,8 @@
-var url = 'ws://121.42.51.70:8080/ws';
+var url = 'wss://loveotoo.com/ws';
 
 function connect (user, func) {
-
   wx.connectSocket({
-    url: url + '?username='+user.nickName
+    url: encodeURI(url + '?username=' + user.nickName),
   });
 
   wx.onSocketMessage(func);

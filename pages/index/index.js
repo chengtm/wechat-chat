@@ -15,14 +15,30 @@ var user = {};
 Page({
   data: {
     message : '',
-    text : text
+    text : text,
+    message_focus : true
   },
   bindChange: function(e) {
         message = e.detail.value
   },
   //事件处理函数
   add: function(e) {
-    websocket.send(user.nickName +" : "+ message);
+    if(message){
+      websocket.send(user.nickName +" : "+ message);
+    }else{
+      wx.showToast({
+        title: '发送内容不能为空',
+        icon: 'none',
+        duration: 1000,
+        mask: false
+      })
+    }
+   // 清空对话框
+   message = ''
+   this.setData({
+     message: '',
+     message_focus: true
+   })
   },
   
   onLoad: function () {
